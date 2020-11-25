@@ -31,19 +31,31 @@ class CardService {
   }
 
   Future<int> save(Card card) async {
-    final data = card.toJson();
-    final response = await dio.post('', data: data);
-    return response.statusCode;
+    try {
+      final data = card.toJson();
+      final response = await dio.post('', data: data);
+      return response.statusCode;
+    } catch (e) {
+      print('[ERRO AO BUSCAR] $e');
+    }
   }
 
   Future<int> update(int cardId, Card card) async {
-    final data = card.toJson();
-    final response = await dio.put('/$cardId', data: data);
-    return response.statusCode;
+    try {
+      final data = card.toJson();
+      final response = await dio.put('/$cardId', data: data);
+      return response.statusCode;
+    } catch (e) {
+      print('[ERRO AO BUSCAR] $e');
+    }
   }
 
   Future<int> delete(int cardId) async {
-    final response = await dio.delete('/$cardId');
-    return response.statusCode;
+    try {
+      final response = await dio.delete('/$cardId');
+      return response.statusCode;
+    } catch (e) {
+      print('[ERRO AO BUSCAR] $e');
+    }
   }
 }
